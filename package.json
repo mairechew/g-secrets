@@ -1,0 +1,13 @@
+{
+  "name": "galvanize-secrets",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "express": "~4.13.1",
+    "knex": "^0.13.0",
+    "pg": "^7.0.2"
+  }
+}
