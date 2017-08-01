@@ -3,32 +3,68 @@
 Shh! Read quietly. The purpose of this repo is to practice authentication and authorization concepts
 by completing the following tasks.
 
+## Prerequisites
+
+Postgres, npm, and knex must be installed on your computer. Then run:
+
+`npm install`
+
+`createdb secrets`
+
+`knex migrate:latest`
+
+`knex seed:run`
+
+## Usage
+
+Run the server application with `nodemon` or `npm start`. 
+
+The client is inside the `public` directory. Either:
+
+- `cd ./public` and open `index.html` or run it with a client server like `lite-server` or `http-server`
+- Or serve the files with `express` by adding the following code to `app.js`
+
+```
+app.use(express.static('./public'))
+```
+
 ## Tasks
 
+SERVER tags suggests doing the work in the server, mainly inside the `routes` directory
+
+CLIENT tags suggests doing the work in the client, mainly inside the `public/scripts` directory
+
 - [ ] Sign Up Process 
-  - [ ] Validate unique email to prevent duplicates
-  - [ ] Encrypt user password
-  - [ ] Upon success, generate session token 
-  - [ ] Upon failure, respond with error 
-  - [ ] Set client session and redirect to authorized page 
+  - [ ] Validate unique email to prevent duplicates (SERVER)
+  - [ ] Encrypt user password (SERVER)
+  - [ ] Upon success, store user in the databse, generate session token, and respond with token (SERVER)
+  - [ ] Upon failure, respond with error (SERVER)
+  - [ ] Set client session and redirect to authorized page (CLIENT)
 - [ ] Log In Process
-  - [ ] Compare input password with hashed password for a match
-  - [ ] Upon success, generate session token 
-  - [ ] Upon failure, respond with error 
-  - [ ] Set client session and redirect to authorized page 
+  - [ ] Compare input password with hashed password for a match (SERVER)
+  - [ ] Upon success, generate session token (SERVER) 
+  - [ ] Upon failure, respond with error (SERVER) 
+  - [ ] Set client session and redirect to authorized page (CLIENT) 
 - [ ] Authorize User
-  - [ ] Parse token in the routes
-  - [ ] Check and set token for any requests to user information
-  - [ ] User may only request their own information and secrets
-  - [ ] Send error for missing token or mismatched user
+  - [ ] Parse token in the routes (SERVER)
+  - [ ] Check and set token for any requests to user information (SERVER)
+  - [ ] User may only request their own information and secrets (SERVER)
+  - [ ] Send error for missing token or mismatched user (SERVER)
 - [ ] Authenticate User
-  - [ ] Check for session token in the client
-  - [ ] Add token to headers and request user secrets
-  - [ ] Upon success, display secrets 
-  - [ ] Upon failure, remove session token and redirect to home page
-  - [ ] During a session, redirect user out of home page 
+  - [ ] Check for session token in the client (CLIENT)
+  - [ ] Add token to headers and request user secrets (CLIENT)
+  - [ ] Upon success, display secrets (CLIENT)
+  - [ ] Upon failure, remove session token and redirect to home page (CLIENT)
+  - [ ] During a session, redirect user out of home page (CLIENT)
 - [ ] Log Out Process
-  - [ ] Remove session token and redirect to home page
+  - [ ] Remove session token and redirect to home page (CLIENT)
+
+## TIPS:
+
+- Use [bcrypt](https://www.npmjs.com/package/bcrypt) for hashing passwords
+- Use [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) for generating session tokens
+- Use [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) for managing sessions in the client.
+- Use [location.href](https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/href) to redirect in the client.
  
 ## Standards
 
