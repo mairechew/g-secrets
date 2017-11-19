@@ -9,23 +9,33 @@ $(() => {
 
 function logIn(event) {
   event.preventDefault()
-  const username = $('input[name=login-username').val() 
-  const password = $('input[name=login-password').val() 
-  const data = {username, password}
+  const email = $('input[name=login-email').val()
+  const password = $('input[name=login-password').val()
+  const data = {email, password}
   $.post(`${url}auth/login`, data)
     .then(response => {
-      console.log(response) 
-    })
+    if (response.error) {
+      alert(response.error)
+    } else {
+      localStorage.setItem('token', response.token);
+      location.href = '/secrets.html';
+    }
+  })
 }
 
 function signUp(event) {
   event.preventDefault()
-  const username = $('input[name=signup-username').val() 
-  const email = $('input[name=signup-email').val() 
-  const password = $('input[name=signup-password').val() 
+  const username = $('input[name=signup-username').val()
+  const email = $('input[name=signup-email').val()
+  const password = $('input[name=signup-password').val()
   const data = {username, email, password}
   $.post(`${url}auth/signup`, data)
     .then(response => {
-      console.log(response) 
+      if (response.error) {
+        alert(response.error)
+      } else {
+        localStorage.setItem('token', response.token);
+        location.href = '/secrets.html';
+      }
     })
 }
